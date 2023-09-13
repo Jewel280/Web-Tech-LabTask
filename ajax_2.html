@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo">
+        <center>
+            <fieldset>
+                <legend>Ajax</legend>
+                <table>
+                    <tr>
+                        <td>
+                            First Name: <input type="text" name="fname" id="fname" onkeyup="showFirstNameSuggestions(this.value)">
+                            <p>First Name Suggestions: <span id="s1"></span></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Last Name: <input type="text" name="lname" id="lname" onkeyup="showLastNameSuggestions(this.value)">
+                            <p>Last Name Suggestions: <span id="s2"></span></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Email: <input type="email" name="email" id="email" onkeyup="showEmailSuggestions(this.value)">
+                            <p>Email Suggestions: <span id="s3"></span></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            City <input type="text" name="city" id="city" onkeyup="showCityNameSuggestions(this.value)">
+                            <p>City Name Suggestions: <span id="s4"></span></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Country: <input type="text" name="count" id="count" onkeyup="showCountryNameSuggestions(this.value)">
+                            <p>Country Suggestions: <span id="s5"></span></p>
+                        </td>
+                    </tr>
+                </table>
+                
+                <button onclick="changeContent()">Change Content</button>
+                <p id="content"></p>
+                
+            </fieldset>
+        </center>
+    </div>
+
+    <script>
+        function showFirstNameSuggestions(str) {
+            if (str.length == 0) {
+                document.getElementById("s1").innerHTML = "";
+                return;
+            } else {
+                var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("s1").innerHTML = this.responseText;
+              }
+            }
+            xmlhttp.open("GET", "name.php?q="+str, true);
+            xmlhttp.send();
+            }
+        }
+        
+
+        function showLastNameSuggestions(str) {
+            if (str.length == 0) {
+                document.getElementById("s2").innerHTML = "";
+                return;
+            } else {
+                var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("s2").innerHTML = this.responseText;
+              }
+            }
+            xmlhttp.open("GET", "name.php?q="+str, true);
+            xmlhttp.send();
+            }
+        }
+
+        function showEmailSuggestions(str) {
+            if (str.length == 0) {
+                document.getElementById("s3").innerHTML = "";
+                return;
+            } else {
+                var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("s3").innerHTML = this.responseText;
+              }
+            }
+            xmlhttp.open("GET", "email.php?q="+str, true);
+            xmlhttp.send();
+            }
+        }
+
+        function showCityNameSuggestions(str) {
+            if (str.length == 0) {
+                document.getElementById("s4").innerHTML = "";
+                return;
+            } else {
+                var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("s4").innerHTML = this.responseText;
+              }
+            }
+            xmlhttp.open("GET", "City.php?q="+str, true);
+            xmlhttp.send();
+            }
+        }
+
+        function showCountryNameSuggestions(str) {
+            if (str.length == 0) {
+                document.getElementById("s5").innerHTML = "";
+                return;
+            } else {
+
+                var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("s5").innerHTML = this.responseText;
+              }
+            }
+            xmlhttp.open("GET", "Country.php?q="+str, true);
+            xmlhttp.send();
+            }
+            }
+            function changeContent() {
+            const content = document.getElementById("content");
+            content.textContent = "LabTask 3 Completed";
+        }
+    </script>
+</body>
+</html>

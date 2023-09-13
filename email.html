@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="demo">
+        <table>
+            <tr>
+                <td>
+                    Email: <input type="email" name="email" id="email" onkeyup="showEmailSuggestions(this.value)">
+                    <p>Email Suggestions: <span id="s3"></span></p>
+                </td>
+            </tr>
+        </table>
+        
+        <button onclick="changeContent()">Change Content</button>
+        <p id="contentParagraph"></p>
+    </div>
+
+    <script>
+        function showEmailSuggestions(str) {
+            const emailSuggestionsElement = document.getElementById("s3");
+
+            if (str.length === 0) {
+                emailSuggestionsElement.innerHTML = "";
+                return;
+            }
+
+            const xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState === 4 && this.status === 200) {
+                    emailSuggestionsElement.innerHTML = "Email Suggestions: " + this.responseText;
+                }
+            };
+            xhttp.open("GET", "email.php?q=" + str, true);
+            xhttp.send();
+        }
+
+        function changeContent() {
+            const contentParagraph = document.getElementById("contentParagraph");
+            contentParagraph.textContent = "LabTask 3 Completed";
+        }
+    </script>
+</body>
+</html>
